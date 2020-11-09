@@ -10,15 +10,15 @@
   "server_ssh_authorized_key_address": "",
   "server_ssh_authorized_private_keyfile": "../sshkeys/admin_id_rsa",
 
-  "config_git_repo": "https://gitlab.com/xxx38569459/saar.git",
+  "config_git_repo": "https://github.com/efiens/saarctf-config.git",
   "config_subdir": "test",
 
   "git_username": "git_username",
   "git_email": "git_email@email.com",
 
 
-  "gameserver_git_repo": "https://gitlab.com/xxx38569459/saarctf-gameserver.git",
-  "conntrack_accounting_git_repo": "https://github.com/MarkusBauer/saarctf-conntrack-accounting.git",
+  "gameserver_git_repo": "https://github.com/efiens/saarctf-gameserver.git",
+  "conntrack_accounting_git_repo": "https://github.com/efiens/saarctf-conntrack-accounting.git",
 
 
   "postgresql_replication_password": "root",
