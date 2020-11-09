@@ -3,12 +3,14 @@
     "config_git_repo": null,
     "config_subdir": null,
     "gameserver_git_repo": "https://github.com/MarkusBauer/saarctf-gameserver.git",
-    "ssh_git_private_key": null,
-    "ssh_git_public_key": null,
-    "ssh_known_hosts_file": null,
-    "ssh_authorized_key": "",
-    "ssh_authorized_key_address": "",
-    "vm_root_password": ""
+    "server_ssh_private_key": null,
+    "server_ssh_public_key": null,
+    "server_ssh_known_hosts_file": null,
+    "server_ssh_authorized_key": "",
+    "server_ssh_authorized_key_address": "",
+    "vm_root_password": "",
+    "git_username": null,
+    "git_email": null
   },
   "builders": [
     {
@@ -39,7 +41,7 @@
         ["modifyvm", "{{.Name}}", "--cpus", "2"],
         ["modifyvm", "{{.Name}}", "--nic1", "nat"],
         ["modifyvm", "{{.Name}}", "--nic2", "hostonly"],
-        ["modifyvm", "{{.Name}}", "--hostonlyadapter2", "vboxnet1"],
+        ["modifyvm", "{{.Name}}", "--hostonlyadapter2", "vboxnet0"],
         ["modifyvm", "{{.Name}}", "--natpf1", "ssh,tcp,,9022,,22"],
         ["modifyvm", "{{.Name}}", "--audio", "none"],
         ["modifyvm", "{{.Name}}", "--rtcuseutc", "on"]
@@ -63,17 +65,17 @@
   "provisioners": [
     {
       "type": "file",
-      "source": "../{{user `ssh_git_private_key`}}",
+      "source": "../{{user `server_ssh_private_key`}}",
       "destination": "/root/.ssh/id_rsa"
     },
     {
       "type": "file",
-      "source": "../{{user `ssh_git_public_key`}}",
+      "source": "../{{user `server_ssh_public_key`}}",
       "destination": "/root/.ssh/id_rsa.pub"
     },
     {
       "type": "file",
-      "source": "../{{user `ssh_known_hosts_file`}}",
+      "source": "../{{user `server_ssh_known_hosts_file`}}",
       "destination": "/root/.ssh/known_hosts"
     },
     {
@@ -92,8 +94,10 @@
         "CONFIG_SUBDIR={{user `config_subdir`}}",
         "CONFIG_GIT_REPO={{user `config_git_repo`}}",
         "GAMESERVER_GIT_REPO={{user `gameserver_git_repo`}}",
-        "SSH_AUTHORIZED_KEY={{user `ssh_authorized_key`}}",
-        "SSH_AUTHORIZED_KEY_ADDRESS={{user `ssh_authorized_key_address`}}"
+        "SSH_AUTHORIZED_KEY={{user `server_ssh_authorized_key`}}",
+        "SSH_AUTHORIZED_KEY_ADDRESS={{user `server_ssh_authorized_key_address`}}",
+        "GIT_USERNAME={{user `git_username`}}",
+        "GIT_EMAIL={{user `git_email`}}"
       ],
       "scripts": [
         "./basic-setup.sh"

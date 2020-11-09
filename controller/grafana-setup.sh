@@ -110,6 +110,9 @@ providers:
     folder: '/var/lib/grafana/dashboards'
 EOF
 
+chown -R grafana:grafana /var/lib/grafana
+chown -R grafana:grafana /etc/grafana
+
 systemctl enable grafana-server
 systemctl start grafana-server
 

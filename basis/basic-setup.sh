@@ -72,8 +72,8 @@ curl -o /usr/local/bin/rmate https://raw.githubusercontent.com/aurora/rmate/mast
 sudo chmod +x /usr/local/bin/rmate
 
 # configure git
-git config --global user.name "saarctf server"
-git config --global user.email "saarctf@saarsec.rocks"
+git config --global user.name "$GIT_USERNAME"
+git config --global user.email "$GIT_EMAIL"
 
 # configure htop
 mkdir -p /root/.config/htop
@@ -81,5 +81,6 @@ mv /tmp/htoprc /root/.config/htop/
 
 
 # Virtualbox only - cleanup disk
+# xxx: seem like just make disk bigger?
 is_virtualbox && sh -c 'dd if=/dev/zero of=/var/tmp/bigemptyfile bs=4096k ; rm /var/tmp/bigemptyfile ; echo OK' || true
 

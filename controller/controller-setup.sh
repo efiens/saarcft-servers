@@ -439,3 +439,4 @@ echo " - systemctl restart scoreboard" >> /etc/motd
 echo " - systemctl restart submission-server" >> /etc/motd
 echo -e "\n" >> /etc/motd
 
+apt-get -y install nmap vim

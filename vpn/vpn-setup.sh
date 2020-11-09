@@ -367,3 +367,5 @@ echo -e " - vpnboard         (vpn statistics website)" >> /etc/motd
 echo -e " - vpnboard-celery  (workers for vpnboard)" >> /etc/motd
 echo -e " - conntrack-accounting / conntrack-psql-insert  (conntrack monitoring)" >> /etc/motd
 echo -e "\n" >> /etc/motd
+
+apt-get -y install nmap vim

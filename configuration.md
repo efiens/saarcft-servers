@@ -32,8 +32,8 @@ Later use this file in all packer commands with `-var-file ../config.json`.
 **Required Packer configuration options:**
 - `config_git_repo`: Your configuration repository
 - `config_subdir`: The directory in your configuration repository you want to use (`<your-ctf-2020>` etc in the example above)
-- `ssh_git_private_key`: (relative) path to a SSH key with access to the configuration repository (will become server's `id_rsa`)
-- `ssh_git_public_key`: (relative) path to a SSH public key with access to the configuration repository (will become server's `id_rsa.pub`)
+- `ssh_private_key`: (relative) path to a SSH key with access to the configuration repository (will become server's `id_rsa`)
+- `ssh_public_key`: (relative) path to a SSH public key with access to the configuration repository (will become server's `id_rsa.pub`)
 - `ssh_known_hosts_file`: (relative) path to a `known_hosts` file (avoid confirmation of your git SSH server's public key)
 
 - `ssh_authorized_key`: public SSH key from admin (`"ssh-rsa ..."`)

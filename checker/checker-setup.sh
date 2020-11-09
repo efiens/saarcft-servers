@@ -105,3 +105,5 @@ echo " - systemctl restart celery" >> /etc/motd
 echo " - celery-run <hostname> <concurrency>" >> /etc/motd
 echo "Check out /etc/celery.conf to change concurrency." >> /etc/motd
 echo -e "\n" >> /etc/motd
+
+apt-get -y install nmap vim

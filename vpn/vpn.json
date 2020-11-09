@@ -1,7 +1,7 @@
 {
   "variables": {
     "conntrack_accounting_git_repo": "https://github.com/MarkusBauer/saarctf-conntrack-accounting.git",
-    "ssh_authorized_private_keyfile": "",
+    "server_ssh_authorized_private_keyfile": "",
     "vm_root_password": ""
   },
   "builders": [
@@ -33,7 +33,7 @@
         ["modifyvm", "{{.Name}}", "--cpus", "2"],
         ["modifyvm", "{{.Name}}", "--nic1", "nat"],
         ["modifyvm", "{{.Name}}", "--nic2", "hostonly"],
-        ["modifyvm", "{{.Name}}", "--hostonlyadapter2", "vboxnet1"]
+        ["modifyvm", "{{.Name}}", "--hostonlyadapter2", "vboxnet0"]
       ],
       "keep_registered": true
     },
@@ -52,7 +52,7 @@
       },
       "poll_interval": "1000ms",
       "ssh_username": "root",
-      "ssh_private_key_file": "../{{user `ssh_authorized_private_keyfile`}}"
+      "ssh_private_key_file": "../{{user `server_ssh_authorized_private_keyfile`}}"
     }
 
   ],

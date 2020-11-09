@@ -1,11 +1,6 @@
 {
-  "variables": {
-    "debian_version": "10.5.0",
-    "vm_root_password": null
-  },
   "builders": [
     {
-      "type": "virtualbox-iso",
       "boot_command": [
         "<esc><wait>",
         "install <wait>",
@@ -22,34 +17,48 @@
         "<enter><wait>"
       ],
       "boot_wait": "10s",
-      "headless": false,
-      "http_directory": ".",
-      "iso_checksum_type": "sha512",
-      "iso_checksum_url": "http://cdimage.debian.org/cdimage/release/{{user `debian_version`}}/amd64/iso-cd/SHA512SUMS",
-      "iso_url": "http://cdimage.debian.org/cdimage/release/{{user `debian_version`}}/amd64/iso-cd/debian-{{user `debian_version`}}-amd64-netinst.iso",
-      "ssh_username": "root",
-      "ssh_password": "ThOkUi3zoBBtoBCC",
-      "ssh_port": 22,
-      "ssh_wait_timeout": "10000s",
-      "shutdown_command": "echo 'packer'|/sbin/shutdown -hP now",
-      "guest_additions_mode": "disable",
-      "vm_name": "saarctf-server-os",
       "disk_size": 51200,
+      "format": "ova",
+      "guest_additions_mode": "disable",
       "guest_os_type": "Debian_64",
       "hard_drive_interface": "sata",
+      "headless": false,
+      "http_directory": ".",
+      "iso_checksum": "file:http://cdimage.debian.org/cdimage/release/{{user `debian_version`}}/amd64/iso-cd/SHA512SUMS",
+      "iso_url": "http://cdimage.debian.org/cdimage/release/{{user `debian_version`}}/amd64/iso-cd/debian-{{user `debian_version`}}-amd64-netinst.iso",
       "keep_registered": false,
       "output_directory": "output",
+      "shutdown_command": "echo 'packer'|/sbin/shutdown -hP now",
+      "ssh_port": 22,
+      "ssh_timeout": "10000s",
+      "ssh_username": "root",
+      "ssh_password": "root",
+      "type": "virtualbox-iso",
       "vboxmanage": [
-        ["modifyvm", "{{.Name}}", "--memory", "1024"],
-        ["modifyvm", "{{.Name}}", "--vram", "16"],
-        ["modifyvm", "{{.Name}}", "--cpus", "2"]
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "1024"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "16"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "2"
+        ]
       ],
-      "format": "ova"
+      "vm_name": "saarctf-server-os"
     }
   ],
   "provisioners": [
     {
-      "type": "shell",
       "inline": [
         "apt-get update",
         "apt-get upgrade -y",
@@ -59,7 +68,12 @@
         "chmod 0600 /root/.ssh/*",
         "echo 'root:{{user `vm_root_password`}}' | chpasswd",
         "sh -c 'dd if=/dev/zero of=/var/tmp/bigemptyfile bs=4096k ; rm /var/tmp/bigemptyfile ; echo OK'"
-      ]
+      ],
+      "type": "shell"
     }
-  ]
+  ],
+  "variables": {
+    "debian_version": null,
+    "vm_root_password": null
+  }
 }
