@@ -19,7 +19,7 @@ Instead of creating a new config, you can use the `test` configuration.
 - Before building the images, you need a plain debian installation: `cd debian ; packer build buster.json`.
   If the CD image can't be fetched, you most likely need to update the Debian subversion (`debian_version` on top of `debian/buster.json`).
 - When building server images, use `-only=virtualbox-ovf` instead of `-only=hcloud`.
-- Use a Virtualbox host-only network instead of Hetzner networks. By default use `vboxnet1`. 
+- Use a Virtualbox host-only network instead of Hetzner networks. By default use `vboxnet1`.
   Configuration: IP `10.32.251.1`, mask `255.255.0.0`, DHCP server enabled, smallest IP `10.32.250.10`, largest IP `10.32.250.250`.
 - Skip the route configuraton, that already happens in Virtualbox installation script.
 - Use `/etc/hosts` on your host to configure the domains:
